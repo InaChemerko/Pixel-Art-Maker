@@ -2,23 +2,36 @@
 // Select size input
 
 // When size is submitted by the user, call makeGrid()
-const height = document.querySelector('#inputHeight');
-const width = document.querySelector('#inputWidth');
-const color = document.querySelector('#colorPicker');
-const canvas = document.querySelector('#pixelCanvas');
-const submit = document.querySelector('#submit');
+const height = document.getElementById('inputHeight');
+const width = document.getElementById('inputWidth');
+const color = document.getElementById('colorPicker');
+const canvas = document.getElementById('pixelCanvas');
+const submitSize = document.getElementById('sizePicker');
+
 
 function makeGrid(height, width) {
   // Your code goes here!
-  //event.preventDefault();
-  //canvas.children().remove();
-  let newTr = document.createElement('tr');
-  let newTd = document.createElement('td');
-  for (let i = 0; i<height.val(); i++) {
+  for (let i = 0; i<height.value; i++) {
+    let newTr = document.createElement('tr');
     canvas.appendChild(newTr);
-    for (let j = 0; j< weight.val(); j++) {
-      $('tr').last().append('<td></td>');
+    for (let j = 0; j< width.value; j++) {
+      let newTd= document.createElement('td');
+      newTr.appendChild(newTd);
     }
   }
+  
 };
-submit.addEventListenr
+submitSize.addEventListener('submit', function (event){
+event.preventDefault();
+  canvas.innerHTML='';
+  makeGrid(height, width);
+}
+
+);
+function setColor(evt){
+  if (evt.target.nodeName === 'TD') {
+        evt.target.style.backgroundColor = color.value;
+    }
+};
+
+canvas.addEventListener('click', setColor);
